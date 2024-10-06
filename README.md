@@ -1,6 +1,6 @@
 # Mobile Application I/O Traces
 
-This repository contains block-level I/O traces obtained from several widely used mobile applications, as referenced in the research paper [*Space-efficient FTL for Mobile Storage via Tiny Neural Nets*](https://dl.acm.org/doi/abs/10.1145/3688351.3689157). Please cite this paper if you want to use the traces in your research.
+This repository contains block-level I/O traces obtained from several widely used mobile applications, as referenced in the research paper [*Space-efficient FTL for Mobile Storage via Tiny Neural Nets*](https://dl.acm.org/doi/abs/10.1145/3688351.3689157).
 
 ## Overview
 
@@ -18,6 +18,24 @@ Traces were gathered during active interaction with each application for an exte
 
 ### Fragmentation and SSD Usage
 Prior to trace collection, the SSD on the Pixel 6a had been heavily utilized, leading to a high degree of fragmentation in the Logical Page Number (LPN) space. This fragmentation is evidenced by the large span of accessed LPNs observed across the 120GB SSD, contributing to the realistic representation of storage access patterns.
+
+## Trace Parts: Installation and Execution
+
+Each trace is divided into two distinct phases:
+1. **Installation I/O**: This part captures the write I/O that occurs during the installation of the application on the phone. It is used for preconditioning the Flash Translation Layer (FTL) to initialize the Logical-to-Physical (L2P) mappings.
+   
+2. **Execution I/O**: This part captures the I/O operations generated during the actual execution and usage of the application.
+
+The CSV files include a marker row `"preconditioning_ended"` (which does not adhere to the CSV format) to indicate the transition between these two phases. All I/O requests before this marker correspond to the installation phase, while the I/O requests after this marker correspond to the execution phase.
+
+## Trace Parts: Installation and Execution
+
+Each trace is divided into two distinct phases, and each phase is stored in a separate CSV file:
+
+1. **Installation I/O (`<trace_name>_precond.csv`)**: This file contains the write I/O that occurs during the installation of the application on the phone. It is used to precondition the Flash Translation Layer (FTL) by initializing the Logical-to-Physical (L2P) mappings. 
+   
+2. **Execution I/O (`<trace_name>_exec.csv`)**: This file captures the I/O operations generated during the actual execution and active usage of the application.
+
 
 ## Trace File Format
 

@@ -21,15 +21,6 @@ Prior to trace collection, the SSD on the Pixel 6a had been heavily utilized, le
 
 ## Trace Parts: Installation and Execution
 
-Each trace is divided into two distinct phases:
-1. **Installation I/O (_precond)**: This part captures the write I/O that occurs during the installation of the application on the phone. It is used for preconditioning the Flash Translation Layer (FTL) to initialize the Logical-to-Physical (L2P) mappings.
-   
-2. **Execution I/O (_exec)**: This part captures the I/O operations generated during the actual execution and usage of the application.
-
-The CSV files include a marker row `"preconditioning_ended"` (which does not adhere to the CSV format) to indicate the transition between these two phases. All I/O requests before this marker correspond to the installation phase, while the I/O requests after this marker correspond to the execution phase.
-
-## Trace Parts: Installation and Execution
-
 Each trace is divided into two distinct phases, and each phase is stored in a separate CSV file:
 
 1. **Installation I/O (`<trace_name>_precond.csv`)**: This file contains the write I/O that occurs during the installation of the application on the phone. It is used to precondition the Flash Translation Layer (FTL) by initializing the Logical-to-Physical (L2P) mappings. 
